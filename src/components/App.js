@@ -3,11 +3,12 @@ import { useReducer } from 'react';
 import reducer from '../reducers';
 import { initialState } from '../reducers';
 import './App.css';
-import { addOne, ADD_ONE } from '../actions';
+import {  addOne, ADD_ONE, clearMemory } from '../actions';
 import { applyNumber, APPLY_NUMBER } from '../actions';
 import { changeOperation, CHANGE_OPERATION } from '../actions';
 import { clearDisplay, CLEAR_DISPLAY } from '../actions';
 import { addToMemory, ADD_TO_MEMORY } from '../actions';
+import { addMemoryToTotal, ADD_MEMORY_TO_TOTAL } from '../actions';
 
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
@@ -34,6 +35,14 @@ function App() {
   const handleMPlusClick = () => {
     dispatch(addToMemory())
   }
+
+  const handelMRClick = () => {
+    dispatch(addMemoryToTotal())
+  }
+
+  const handleMCClick = () => {
+    dispatch(clearMemory())
+  }
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -52,8 +61,8 @@ function App() {
 
             <div className="row">
               <CalcButton onClick={() => handleMPlusClick() } value={"M+"} />
-              <CalcButton value={"MR"} />
-              <CalcButton value={"MC"} />
+              <CalcButton onClick={() => handelMRClick() }value={"MR"} />
+              <CalcButton onClick={()=> handleMCClick()}value={"MC"} />
             </div>
 
             <div className="row">
