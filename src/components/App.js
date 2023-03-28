@@ -7,6 +7,7 @@ import { addOne, ADD_ONE } from '../actions';
 import { applyNumber, APPLY_NUMBER } from '../actions';
 import { changeOperation, CHANGE_OPERATION } from '../actions';
 import { clearDisplay, CLEAR_DISPLAY } from '../actions';
+import { addToMemory, ADD_TO_MEMORY } from '../actions';
 
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
@@ -26,8 +27,12 @@ function App() {
     dispatch(changeOperation(operator))
   }
 
-  const handleCEClick = ()=>{
+  const handleCEClick = () => {
     dispatch(clearDisplay())
+  }
+
+  const handleMPlusClick = () => {
+    dispatch(addToMemory())
   }
   return (
     <div className="App">
@@ -46,7 +51,7 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
+              <CalcButton onClick={() => handleMPlusClick() } value={"M+"} />
               <CalcButton value={"MR"} />
               <CalcButton value={"MC"} />
             </div>
@@ -70,13 +75,13 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton onClick = {()=>handleOperatorClick('+')}value={"+"} />
-              <CalcButton onClick = {()=>handleOperatorClick('*')}value={"*"} />
-              <CalcButton onClick = {()=>handleOperatorClick('-')}value={"-"} />
+              <CalcButton onClick={() => handleOperatorClick('+')} value={"+"} />
+              <CalcButton onClick={() => handleOperatorClick('*')} value={"*"} />
+              <CalcButton onClick={() => handleOperatorClick('-')} value={"-"} />
             </div>
 
             <div className="row ce_button">
-              <CalcButton onClick ={()=> handleCEClick()}value={"CE"} />
+              <CalcButton onClick={() => handleCEClick()} value={"CE"} />
             </div>
 
           </form>
